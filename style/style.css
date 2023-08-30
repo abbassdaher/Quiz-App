@@ -1,0 +1,26 @@
+body{
+background-color: #FEFFAC;
+}
+.settings{
+    padding: 10px;
+    border: 1px solid #FFB6D9;
+    border-radius: 10px;
+    background-color: #45FFCA;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    
+}
+.settings h3{
+text-align: center;
+}
+.y-margin{
+    margin: 10px 0px;
+}
+.amountElement{
+    color: #D67BFF;
+    
+}
+.difficulty input:checked ~ .difficulty-radio {
+    background-color: #D67BFF;
+}
