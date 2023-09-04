@@ -14,9 +14,9 @@ class Settings {
         this.amountElement =  document.querySelector(".amountElement")
         this.categoryElement = document.querySelector(".categoryElement")
         this.difficulty = [
-            document.querySelector(".easy"),
-            document.querySelector(".medium"),
-            document.querySelector(".hard")
+            document.querySelector("#easy"),
+            document.querySelector("#medium"),
+            document.querySelector("#hard")
         ]
         this.startBTN = document.querySelector(".startBTN")
         this.startBTN.addEventListener('click',this.startQuiz)
@@ -29,7 +29,7 @@ class Settings {
 
         const amount = this.getAmount();
         const category = 18;
-        const difficulty = "easy";
+        const difficulty = this.getDifficulty();
         const url = `https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficulty}` ;
         fetch(url)
         /* `.then((response)=> response.json())` 
@@ -50,7 +50,7 @@ class Settings {
         
     }
     
-    /* The `getAmount` function is retrieving the value entered in the `amountElement` input field. It
+    /* The getAmount function is retrieving the value entered in the `amountElement` input field. It
     then checks if the value is greater than 0 and less than 20. If it meets this condition, it
     returns the value. Otherwise, it displays an alert message asking the user to enter a number
     between 1 and 20. */
@@ -60,6 +60,22 @@ class Settings {
             return amount  
         }else{
             alert('please enter the number of questions between 1 and 20')
+            location.reload()
+        }
+        
+    }
+
+    /* The `getDifficulty` function is retrieving the selected difficulty level from the radio buttons.
+    It uses the `filter` method to filter out the checked radio button from the `this.difficulty`
+    array. If there is only one checked radio button, it returns the `id` of that button. Otherwise,
+    it displays an alert message asking the user to choose a difficulty level and reloads the page. */
+    getDifficulty = ()=>{
+        const difficulty = this.difficulty.filter((elemet) => elemet.checked )
+        if(difficulty.length == 1){
+            return difficulty[0].id
+        }else{
+            alert("please choose the difficulty of quiz")
+            location.reload()
         }
         
     }
