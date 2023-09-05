@@ -2,7 +2,9 @@ body {
     background-color: #FEFFAC;
 }
 
-.settings , .quiz {
+.settings,
+.quiz ,
+.final {
     padding: 10px;
     border: 1px solid #FFB6D9;
     border-radius: 10px;
@@ -19,6 +21,9 @@ body {
 
 .y-margin {
     margin: 10px 0px;
+}
+.x-margin{
+    margin: 0px 5px;
 }
 
 .amountElement {
@@ -40,4 +45,38 @@ input[type=radio]:checked.difficulty-radio {
 
 .startBTN:hover {
     opacity: 0.8;
+}
+.quiz{
+    display: flex;
+    flex-direction: column;
+}
+.question {
+    margin-bottom: 20px;
+
+}
+.answers,.backBtn, .nextBtn, .tryAgainBtn{
+    border: 1px solid #FEFFAC ;
+    background-color: #FEFFAC;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    text-transform: capitalize;
+    font-weight: bold;
+
+}
+.numberOfQuestion{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-weight: bold;
+}
+.control{
+    
+    transform: translate(43%, 0%);
+    }
+.backBtn, .nextBtn{
+}
+.final{
+    display: block;
+    text-align: center;
 }

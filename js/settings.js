@@ -20,34 +20,37 @@ class Settings {
         ]
         this.startBTN = document.querySelector(".startBTN")
         this.startBTN.addEventListener('click',this.startQuiz)
-        this.quizDom.style.display = "none"
+        this.quizDom.style.display = "block"
     }
     
-    startQuiz = ()=>{
+    startQuiz = async()=>{
         this.settingsDom.style.display = "none"
         this.quizDom.style.display = "block"
 
         const amount = this.getAmount();
-        const category = 18;
+        const category = this.categoryElement.value;
         const difficulty = this.getDifficulty();
         const url = `https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficulty}` ;
-        fetch(url)
-        /* `.then((response)=> response.json())` 
-        that is used to handle
-        the response from a fetch request. 
-        and transform the response to json*/
-        .then((response)=> response.json())
-        /* `.then((data)=> console.log(data.results))` 
-        is a callback function that is executed after
-        the response from the fetch request is successfully transformed into JSON format. It logs
-        the `results` property of the `data` object to the console. */
-        .then((data)=> console.log(data.results))
-
-
-
+        let results = await this.fetchData(url)
+        console.log(results)
+        // fetch(url)
+        // /* `.then((response)=> response.json())` 
+        // that is used to handle
+        // the response from a fetch request. 
+        // and transform the response to json*/
+        // .then((response)=> response.json())
+        // /* `.then((data)=> console.log(data.results))` 
+        // is a callback function that is executed after
+        // the response from the fetch request is successfully transformed into JSON format. It logs
+        // the `results` property of the `data` object to the console. */
+        // .then((data)=> {
+        //     let results=data.results
+        //     console.log(results)})
     }
-    fetchData = (url)=>{
-        
+    fetchData = async (url)=>{
+        const response = await fetch(url)
+        const result = await response.json()
+            return result
     }
     
     /* The getAmount function is retrieving the value entered in the `amountElement` input field. It
@@ -65,19 +68,20 @@ class Settings {
         
     }
 
-    /* The `getDifficulty` function is retrieving the selected difficulty level from the radio buttons.
-    It uses the `filter` method to filter out the checked radio button from the `this.difficulty`
-    array. If there is only one checked radio button, it returns the `id` of that button. Otherwise,
+    /* The getDifficulty function is retrieving the selected difficulty level from the radio buttons.
+    It uses the filter method to filter out the checked radio button from the `this.difficulty`
+    array. If there is only one checked radio button, it returns the id of that button. Otherwise,
     it displays an alert message asking the user to choose a difficulty level and reloads the page. */
     getDifficulty = ()=>{
         const difficulty = this.difficulty.filter((elemet) => elemet.checked )
         if(difficulty.length == 1){
             return difficulty[0].id
         }else{
-            alert("please choose the difficulty of quiz")
+            alert("please choose the difficulty level of quiz")
             location.reload()
         }
         
     }
+
 }
 export default Settings

@@ -9,48 +9,79 @@
     </head>
     <body>
         <!-- amount=10&category=9&difficulty=easy  -->
-        <div class="quiz"><h3>Quiz</h3></div>
-            <div class="settings">
-                <h3>settings</h3>
-                <div class="amount y-margin">
-                    <label for="amountElement ">Number Of Question</label>
-                    <input type="number" class="amountElement">
-                </div>
-                <!-- category:
+        <div class="quiz">
+            <h3>Quiz</h3>
+            <div class="question">question</div>
+            <div class="choices">
+                <select name="answers" class="answers">
+                    <option value="0" hidden> choose answers</option>
+                </select>
+            </div>
+            <div class="numberOfQuestion">1 / 10</div>
+            <div class="control">
+                <button class="backBtn x-margin">back</button>
+                <button class="nextBtn">next</button>
+            </div>
+        </div>
+        <div class="final" displa>
+            <div class="title-final"><h3>you answered all question</h3></div>
+            <h4>Again</h4>
+            <button class="tryAgainBtn">try again</button>
+        </div>
+        <div class="settings">
+            <h3>settings</h3>
+            <div class="amount y-margin">
+                <label for="amountElement ">Number Of Question</label>
+                <input type="number" class="amountElement">
+            </div>
+            <!-- category:
                 9:general knowledge
                 27:animals
                 18:computer
                 21:sports -->
-                <div class="category y-margin">
-                    <label for="categoryElement">Category</label>
-                    <select name="categoryElement" class="categoryElement">
-                        <option value="" hidden>select category</option>
-                        <option value="9">general knowledge</option>
-                        <option value="27">animals</option>
-                        <option value="21">sports</option>
-                        <option value="18">computer</option>
-                    </select>
-                </div>
-                <div class="difficulty ">
-                    <label for="difficulty">Difficulty:</label>
-                    <label class="container" for="easy">
-                        <input type="radio" name="difficulty" id="easy" class="easy difficulty-radio">
-                        Easy
-                        <span class="checkmark"></span>
-                    </label>
-                    <label for="medium">
-                        <input type="radio" name="difficulty" id="medium" class=" medium difficulty-radio">
-                        Medium
-                    </label>
-                    <label for="hard">
-                        <input type="radio" name="difficulty" id="hard" class=" hard difficulty-radio">
-                        Hard
-                    </label>
-                </div>
-                <button class="startBTN y-margin">Start Quiz</button>
+            <div class="category y-margin">
+                <label for="categoryElement">Category</label>
+                <select name="categoryElement" class="categoryElement">
+                    <option value="" hidden>select category</option>
+                    <option value="9">general knowledge</option>
+                    <option value="27">animals</option>
+                    <option value="21">sports</option>
+                    <option value="18">computer</option>
+                </select>
             </div>
-        
+            <div class="difficulty ">
+                <label for="difficulty">Difficulty:</label>
+                <label class="container" for="easy">
+                    <input
+                        type="radio"
+                        name="difficulty"
+                        id="easy"
+                        class="easy difficulty-radio"
+                    >
+                    Easy
+                    <span class="checkmark"></span>
+                </label>
+                <label for="medium">
+                    <input
+                        type="radio"
+                        name="difficulty"
+                        id="medium"
+                        class=" medium difficulty-radio"
+                    >
+                    Medium
+                </label>
+                <label for="hard">
+                    <input
+                        type="radio"
+                        name="difficulty"
+                        id="hard"
+                        class=" hard difficulty-radio"
+                    >
+                    Hard
+                </label>
+            </div>
+            <button class="startBTN y-margin">Start Quiz</button>
+        </div>
     </body>
     <script type="module" src="js/main.js"></script>
-    
 </html>
