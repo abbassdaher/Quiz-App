@@ -9,23 +9,24 @@
     </head>
     <body>
         <!-- amount=10&category=9&difficulty=easy  -->
-        <div class="quiz">
+        <div class="quiz" style="display:none ;">
             <h3>Quiz</h3>
             <div class="question">question</div>
             <div class="choices">
-                <select name="answers" class="answers">
+                <!-- <select name="answers" class="answers">
                     <option value="0" hidden> choose answers</option>
-                </select>
-            </div>
+                </select> --></div>
             <div class="numberOfQuestion">1 / 10</div>
             <div class="control">
                 <button class="backBtn x-margin">back</button>
                 <button class="nextBtn">next</button>
             </div>
         </div>
-        <div class="final" displa>
-            <div class="title-final"><h3>you answered all question</h3></div>
-            <h4>Again</h4>
+        <div class="final">
+            <div class="title-final">
+                <h3>you answered all question</h3>
+                <p class="score"></p>
+            </div>
             <button class="tryAgainBtn">try again</button>
         </div>
         <div class="settings">

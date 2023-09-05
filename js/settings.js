@@ -5,7 +5,8 @@
 //     9:general knowledge
 //     27:animals
 //     21:sports
-
+import Questions from "./question.js";
+import Quiz from "./quiz.js";
 
 class Settings {
     constructor(){
@@ -21,6 +22,7 @@ class Settings {
         this.startBTN = document.querySelector(".startBTN")
         this.startBTN.addEventListener('click',this.startQuiz)
         this.quizDom.style.display = "block"
+        this.quiz = []
     }
     
     startQuiz = async()=>{
@@ -32,7 +34,11 @@ class Settings {
         const difficulty = this.getDifficulty();
         const url = `https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficulty}` ;
         let results = await this.fetchData(url)
-        console.log(results)
+
+        this.quiz = new Quiz(this.quizDom, this.amount, results);
+        
+        console.log(results.results)
+
         // fetch(url)
         // /* `.then((response)=> response.json())` 
         // that is used to handle
@@ -45,8 +51,9 @@ class Settings {
         // the `results` property of the `data` object to the console. */
         // .then((data)=> {
         //     let results=data.results
-        //     console.log(results)})
     }
+   /* The fetchData function is an asynchronous function that takes a URL as a parameter. It uses the
+   fetch function to make a GET request to the specified URL. */
     fetchData = async (url)=>{
         const response = await fetch(url)
         const result = await response.json()
