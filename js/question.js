@@ -1,4 +1,4 @@
-import settings from "./settings.js";
+import Settings from "./settings.js";
 class Questions {
     constructor(questions) {
         this.questionElement = document.querySelector(".question")
