@@ -14,6 +14,7 @@ class Settings {
         this.quizDom = document.querySelector(".quiz")
         this.amountElement =  document.querySelector(".amountElement")
         this.categoryElement = document.querySelector(".categoryElement")
+        this.finalElememt =document.querySelector(".final")
         this.difficulty = [
             document.querySelector("#easy"),
             document.querySelector("#medium"),
@@ -21,7 +22,9 @@ class Settings {
         ]
         this.startBTN = document.querySelector(".startBTN")
         this.startBTN.addEventListener('click',this.startQuiz)
-        this.quizDom.style.display = "block"
+        this.quizDom.style.display = "none"
+        this.finalElememt.style.display = "none"
+         
         this.quiz = []
     }
     
@@ -34,8 +37,8 @@ class Settings {
         const difficulty = this.getDifficulty();
         const url = `https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficulty}` ;
         let results = await this.fetchData(url)
-
-        this.quiz = new Quiz(this.quizDom, this.amount, results);
+        // console.log("amount",amount);
+        this.quiz = new Quiz(this.quizDom, amount, results.results);
         
         console.log(results.results)
 

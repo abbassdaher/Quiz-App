@@ -2,17 +2,22 @@ import Settings from "./settings.js";
 import Final from "./final.js"
 import Question from "./question.js"
 class Quiz{
-    constructor(quizElement, amount, result){
+    constructor(quizElement, amount, questions){
         this.quizElement = quizElement;
         this.numberOfQuestionElement = document.querySelector(".numberOfQuestion")
         this.final = document.querySelector(".final")
         this.nextBtn = document.querySelector(".nextBtn")
         this.backBtn = document.querySelector(".backBtn")
 
-        this.answeredAmount =0
-        this.total = amount;
+        this.answeredAmount = 0
 
+        
         this.questions = this.setQuestion(questions)
+        this.totalAmount = amount;
+        this.renderQuestion()
+        // console.log("amount",amount);
+        // console.log(this.questions);
+        this.nextBtn.addEventListener('click',this.nextQuestion)
         
     }
 
@@ -23,11 +28,23 @@ class Quiz{
      * @returns An array of Question objects.
      */
     setQuestion(questions){
+        // let question = questions.map(question => new Question(question))
+        // console.log(question);
         return questions.map(question => new Question(question))
     }
-    renderQuestion(){}
-    nextQuestion(){}
+
+    renderQuestion(){
+        this.questions[this.answeredAmount].render()
+        this.numberOfQuestionElement.innerHTML = `${this.answeredAmount + 1} of ${this.totalAmount}`
+
+    }
+    // if not arow function then you must add nextQuestion.bind(this) to denoted for quiz
+    nextQuestion = ()=>{
+        // const checkElement = this.questions[this.answeredAmount].answer()
+    }
     endQuiz(){}
-    countCorrectAnswer(){}
+    countCorrectAnswer(){
+        this.questions.answer()
+    }
 }
 export default Quiz;
