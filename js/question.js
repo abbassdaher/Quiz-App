@@ -11,9 +11,20 @@ class Questions {
         this.incorrectAnswers = questions.incorrect_answers
         this.answers = [this.correctAnswer, ...this.incorrectAnswers]
         this.isCorrect = "false"
+        this.trueAnswers = 0
     }
-    answer(checkElement) {
-        this.isCorrect = checkElement[0].textContent == this.correctAnswer ? "true" : "false"
+    /**
+     * The function `answer()` checks if the selected answer is correct and increments the
+     * `trueAnswers` count if it is.
+     */
+    answer() {
+        var indexOfAnswer = this.choicesElement.selectedIndex;
+        this.isCorrect = this.choicesElement.options[indexOfAnswer].text == this.correctAnswer ? "true" : "false"
+        if(this.isCorrect == "true"){
+            this.trueAnswers++
+        }
+        console.log(this.trueAnswers);
+        
     }
     render() {
         this.questionElement.innerHTML = this.question.question
