@@ -14,8 +14,8 @@ class Questions {
         this.trueAnswers = 0
     }
     /**
-     * The function `answer()` checks if the selected answer is correct and increments the
-     * `trueAnswers` count if it is.
+     * The function answer() checks if the selected answer is correct and increments the
+     * trueAnswers` count if it is.
      */
     answer() {
         var indexOfAnswer = this.choicesElement.selectedIndex;
@@ -23,15 +23,17 @@ class Questions {
         if(this.isCorrect == "true"){
             this.trueAnswers++
         }
-        console.log(this.trueAnswers);
+        // console.log(this.trueAnswers);
         
     }
     render() {
-        this.questionElement.innerHTML = this.question.question
-         
+        this.questionElement.innerHTML = this.question.question        
         this.answers.forEach((answer, index) => {
             this.choicesElement.innerHTML += `<option value="${answer}">${answer}</option>`
-        })
+        }
+        
+        )
+        
         // this.choicesElement.innerHTML =
         // `<select name="answers" class="answers">
         //     <option value="0" hidden> choose answers</option>
