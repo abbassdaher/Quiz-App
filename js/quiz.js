@@ -5,20 +5,24 @@ class Quiz {
     constructor(quizElement, amount, questions) {
         this.quizElement = quizElement;
         this.numberOfQuestionElement = document.querySelector(".numberOfQuestion")
-        this.final = document.querySelector(".final")
+        this.finalElement = document.querySelector(".final")
         this.nextBtn = document.querySelector(".nextBtn")
         this.backBtn = document.querySelector(".backBtn")
-        // this.trueAnswers = 0
-        this.answeredAmount = 1
-
+        this.score = document.querySelector(".score")
+        this.tryAgainBTN = document.querySelector(".tryAgainBtn")
+        this.answeredAmount = 0
+        this.trueAnswers = 0
 
         this.questions = this.setQuestion(questions)
         this.totalAmount = amount;
         this.questions[this.answeredAmount].choicesElement.innerHTML = ""
-        this.renderQuestion()
-        // console.log("amount",amount);
+        if (this.answeredAmount < this.totalAmount) {
+            this.renderQuestion()
+        }
         console.log(this.questions);
         this.nextBtn.addEventListener('click', this.nextQuestion)
+        this.tryAgainBTN.addEventListener('click', this.tryAgain)
+
 
 
     }
@@ -38,37 +42,41 @@ class Quiz {
     updates the HTML element with the question text and options, and also updates the number of the
     current question being displayed. */
     renderQuestion() {
-        console.log('answerd Amount', this.answeredAmount)
-        this.questions[this.answeredAmount-1].render()
-        this.numberOfQuestionElement.innerHTML = `${this.answeredAmount} of ${this.totalAmount}`
+        console.log("questions", this.questions[this.answeredAmount])
+        this.questions[this.answeredAmount].render()
+        this.numberOfQuestionElement.innerHTML = `${this.answeredAmount + 1} of ${this.totalAmount}`
+        // this.answeredAmount++
     }
     // if not arow function then you must add nextQuestion.bind(this) to denoted for quiz
+    /* The nextQuestion function is a method of the Quiz class. It is responsible for handling the
+    logic when the user clicks the Next button to move to the next question in the quiz. */
     nextQuestion = () => {
-        if (this.answeredAmount < this.totalAmount) {
+        if (this.answeredAmount <= this.totalAmount) {
             this.questions[this.answeredAmount].answer()
+            this.trueAnswers = this.countCorrectAnswer(this.questions[this.answeredAmount])
             this.questions[this.answeredAmount].choicesElement.innerHTML = ""
-            this.answeredAmount++
-            this.renderQuestion()
-            // this.countCorrectAnswer()
-            console.log("answeredAmount", this.answeredAmount);
-            console.log("totalAmount", this.totalAmount);
-        } else {
-            // this.endQuiz()
-            // countCorrectAnswer()
-            console.log("quiz end");
-
+            if (this.answeredAmount < this.totalAmount - 1) {
+                this.answeredAmount++
+                this.renderQuestion()
+            } else {
+                this.endQuiz()
+                console.log("quiz end");
+            }
         }
-        // const checkElement = this.questions[this.answeredAmount].answer()
     }
     endQuiz() {
-
+        this.quizElement.style.display = "none"
+        this.finalElement.style.display = "block"
+        // console.log('answerd Amount', this.answeredAmount)
+        // console.log('trueAnswers', this.trueAnswers)
+        this.score.innerHTML = `true questions is ${this.trueAnswers} of ${this.totalAmount}`
     }
-    countCorrectAnswer() {
-        const trueAnswers = 0
-        if (this.questions[this.answeredAmount].isCorrect == "true")
-            trueAnswers++
-            console.log()
-
+    tryAgain() {
+        window.location.reload()
+    }
+    countCorrectAnswer(checkElement) {
+        if (checkElement.isCorrect == "true") this.trueAnswers++
+        return this.trueAnswers
     }
 }
 export default Quiz;

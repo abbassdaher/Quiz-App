@@ -11,7 +11,7 @@ class Questions {
         this.incorrectAnswers = questions.incorrect_answers
         this.answers = [this.correctAnswer, ...this.incorrectAnswers]
         this.isCorrect = "false"
-        this.trueAnswers = 0
+        
     }
     /**
      * The function answer() checks if the selected answer is correct and increments the
@@ -20,10 +20,10 @@ class Questions {
     answer() {
         var indexOfAnswer = this.choicesElement.selectedIndex;
         this.isCorrect = this.choicesElement.options[indexOfAnswer].text == this.correctAnswer ? "true" : "false"
-        if(this.isCorrect == "true"){
-            this.trueAnswers++
-        }
-        // console.log(this.trueAnswers);
+        // if(this.isCorrect == "true"){
+        //     this.trueAnswers++
+        // }
+        // console.log(this.question.isCorrect);
         
     }
     render() {
